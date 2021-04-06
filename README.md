@@ -28,49 +28,6 @@ sur la Blockchain. Le projet utilise le framework Truffle et Ganache CLI pour le
 
 En utilisant ERC 725, un contrat intelligent peut empêcher l'exécution des appels de fonction à moins que l'expéditeur n'ait une réclamation vérifiée d'un émetteur de confiance, par ex. Intégrez un mécanisme dans nos contrats intelligents pour n'autoriser que les interactions de personnes réputées. ERC-725 permet de nombreux autres cas d'utilisation, tels que les approbations d'exécution multi-signatures et la vérification par appel de contrat au lieu de la validation de clé.
 
-
-
-
-                +--------------+         +------------+
-                |              |         |            |
-                |    ERC 165   |         | KeyStore** |
-                |              |         |            |
-                +---+--------+-+         +----+-------+
-                    |        |                |
-               +----v-----+ +v---------+ +----v-----+
-               |          | |          | |          |
- +-------------+ ERC 735* | | ERC 725* | | KeyBase* |
- |             |          | |          | |          |
- |             +----------+ ++-+----+--+ +--+-------+------+--------------+
- |                           | |    |       |              |              |
- |                           | |    |       |              |              |
- |   +-----------------------+ |    | +-----+-----+  +-----v-----+ +------v-------+
- |   |                         |    | |           |  |           | |              |
- |   |                 +-------|----|-+  Pausable |  | KeyGetter | | Destructible |
- |   |    +--------------------|----|-+           |  |           | |              |
- |   |    |            |       |    | +--+--------+  +-+---------+ +--+-----------+
- |   |    |            |  +----+    |    |             |              |
- |   |    |            |  |         |    |             |              |
- |   |    |            |  |         |    |             |              |
- |   |    |            |  |         |    |             |              |
-+v---v----v---+ +------v--v---+  +--v----v--+          |              |
-|             | |             |  |          |          |              |
-|ClaimManager | | KeyManager  |  | MultiSig |          |              |
-|             | |             |  |          |          |              |
-+---+---------+ ++------------+  +--+-------+          |              |
-    |            |                  |                  |              |
-    |            |                  |                  |              |
-    |            |        +---------v------------------v---+          |
-    |            |        |                                <----------+
-    |            +-------->            Identity            |
-    |                     |        (ERC 725 + 735)         |
-    +--------------------->                                |
-                          +--------------------------------+
-
-* = Abstract contract
-** = Library
-Local Development
-
 Installation
 
 NVM & Yarn
@@ -141,16 +98,6 @@ La transaction est autorisée à se poursuivre.
 
 Maintenant que l'acheteur: l'employeur a une réclamation vérifiée sur son identité de O2OIssuer / SellerBuyerBroker, il peut interagir avec tout autre contrat acceptant également les réclamations émises par O2OIssuer / SellerBuyerBroker.
 
-Dépannage
 
-Chrome> Console: localStorage.clear ();
-Chrome> URL: chrome: // settings / siteData
-Références:
-
-Cas d'utilisation des revendications vérifiables
-blockcerts-révocation
-Procédure pas à pas de démonstration
-
-Écran lors du chargement: premier Wallet-ID 0x313A pour une personne qui désire une identité blockchain (Consommateur: Développeur).
 ===
 # smart-air-id-1
