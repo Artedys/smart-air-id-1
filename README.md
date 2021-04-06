@@ -80,23 +80,23 @@ L'émetteur: SellerBuyerBroker est une identité qui émet des réclamations de 
 
 La liste: JobPosting n'autorisera que les réclamations Consumer: Developer avec FACEBOOK_VERIFIED & GITHUB_VERIFIED d'un Issuer-HeadHunterService en qui il a confiance.
 
-Deuxièmement, consommateur: le développeur interagit avec un contrat d'inscription O2OIssuer / SellerBuyerBroker en suivant le processus:
+Deuxièmement, consommateur: le développeur interagit avec un contrat d'inscription ARTADYSIssuer / SellerBuyerBroker en suivant le processus:
 
 Acheteur: l'employeur déploie un nouveau contrat d'identité (ou réutilise celui qu'il a déployé précédemment).
 
-Acheteur: l'employeur visite O2OIssuer / SellerBuyerBroker / verify et obtient une signature cryptographique prouvant qu'il contrôle un e-mail et un numéro de téléphone particuliers.
+Acheteur: l'employeur visite ARTADYSIssuer / SellerBuyerBroker / verify et obtient une signature cryptographique prouvant qu'il contrôle un e-mail et un numéro de téléphone particuliers.
 
 Acheteur: l'employeur ajoute cette réclamation à son contrat d'identité.
 
-Acheteur: L'employeur essaie de postuler un emploi via un contrat d'inscription O2OIssuer / SellerBuyerBroker.
+Acheteur: L'employeur essaie de postuler un emploi via un contrat d'inscription ARTADYSIssuer / SellerBuyerBroker.
 
-Le contrat d'inscription porte sur l'acheteur: l'identité de l'employeur pour une réclamation émise par O2OIssuer / SellerBuyerBroker.
+Le contrat d'inscription porte sur l'acheteur: l'identité de l'employeur pour une réclamation émise par ARTADYSIssuer / SellerBuyerBroker.
 
-Le contrat d'inscription récupère la clé publique de la signature de la réclamation et vérifie qu'elle est toujours valide sur le contrat émetteur O2OIssuer / SellerBuyerBroker.
+Le contrat d'inscription récupère la clé publique de la signature de la réclamation et vérifie qu'elle est toujours valide sur le contrat émetteur ARTADYSIssuer / SellerBuyerBroker.
 
 La transaction est autorisée à se poursuivre.
 
-Maintenant que l'acheteur: l'employeur a une réclamation vérifiée sur son identité de O2OIssuer / SellerBuyerBroker, il peut interagir avec tout autre contrat acceptant également les réclamations émises par O2OIssuer / SellerBuyerBroker.
+Maintenant que l'acheteur: l'employeur a une réclamation vérifiée sur son identité de ARTADYSIssuer / SellerBuyerBroker, il peut interagir avec tout autre contrat acceptant également les réclamations émises par ARTADYSIssuer / SellerBuyerBroker.
 
 
 ===
