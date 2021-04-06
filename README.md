@@ -23,10 +23,12 @@ L'identité décentralisée est prometteuse et attire une attention et une conce
 
 mode d'emploi
 
-  Le domaine du projet est une implémentation de ERC 725 et ERC 735, norme proposée pour la gestion de l'identité numérique
-  sur la Blockchain. Le projet utilise le framework Truffle et Ganache CLI pour les tests. Ganache CLI, qui fait partie de la suite Truffle d'outils de développement Ethereum, est la version en ligne de commande de Ganache, une blockchain personnelle pour le développement Ethereum. Des outils doux pour les contrats intelligents. La suite Truffle permet aux développeurs de passer de l'idée à l'application le plus confortablement possible.
+Le domaine du projet est une implémentation de ERC 725 et ERC 735, norme proposée pour la gestion de l'identité numérique
+sur la Blockchain. Le projet utilise le framework Truffle et Ganache CLI pour les tests. Ganache CLI, qui fait partie de la suite Truffle d'outils de développement Ethereum, est la version en ligne de commande de Ganache, une blockchain personnelle pour le développement Ethereum. Des outils doux pour les contrats intelligents. La suite Truffle permet aux développeurs de passer de l'idée à l'application le plus confortablement possible.
 
- En utilisant ERC 725, un contrat intelligent peut empêcher l'exécution des appels de fonction à moins que l'expéditeur n'ait une réclamation vérifiée d'un émetteur de confiance, par ex. Intégrez un mécanisme dans nos contrats intelligents pour n'autoriser que les interactions de personnes réputées. ERC-725 permet de nombreux autres cas d'utilisation, tels que les approbations d'exécution multi-signatures et la vérification par appel de contrat au lieu de la validation de clé.
+En utilisant ERC 725, un contrat intelligent peut empêcher l'exécution des appels de fonction à moins que l'expéditeur n'ait une réclamation vérifiée d'un émetteur de confiance, par ex. Intégrez un mécanisme dans nos contrats intelligents pour n'autoriser que les interactions de personnes réputées. ERC-725 permet de nombreux autres cas d'utilisation, tels que les approbations d'exécution multi-signatures et la vérification par appel de contrat au lieu de la validation de clé.
+
+
 
 
                 +--------------+         +------------+
@@ -76,17 +78,24 @@ nvm install v9.11.1   &&
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list &&
 sudo apt-get update && sudo apt-get install yarn
+
 Installation
+
   #
   git clone https://github.com/Artedys/smart-air-id-1.git  &&
   cd smart-air-id-1                                       &&
   nvm use v9.11.1 && yarn install
+
 Run
+
   nvm use v9.11.1 &&
   yarn clean &&
   yarn start
+
 Tests
+
   yarn test
+
 Live Demo
 
  coming soon
