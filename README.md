@@ -19,6 +19,16 @@ Simplicité - Un cadre de blockchain simplifie le processus pour chaque partie p
 Confidentialité - Les régulateurs du monde entier réclament la confidentialité des informations personnelles et sensibles des citoyens.
 
 
+L'identité décentralisée est prometteuse et attire une attention et une concentration importantes sur deux points: Écosystème et nouvelle infrastructure De nombreux avantages ne seront tirés que lorsqu'un vaste écosystème d'entités adoptera des solutions d'identité décentralisées, émettra et vérifiera les informations d'identification numériquement et instituera des normes pour permettre l'interopérabilité et la portabilité.
+
+mode d'emploi
+
+  Le domaine du projet est une implémentation de ERC 725 et ERC 735, norme proposée pour la gestion de l'identité numérique
+  sur la Blockchain. Le projet utilise le framework Truffle et Ganache CLI pour les tests. Ganache CLI, qui fait partie de la suite Truffle d'outils de développement Ethereum, est la version en ligne de commande de Ganache, une blockchain personnelle pour le développement Ethereum. Des outils doux pour les contrats intelligents. La suite Truffle permet aux développeurs de passer de l'idée à l'application le plus confortablement possible.
+
+ En utilisant ERC 725, un contrat intelligent peut empêcher l'exécution des appels de fonction à moins que l'expéditeur n'ait une réclamation vérifiée d'un émetteur de confiance, par ex. Intégrez un mécanisme dans nos contrats intelligents pour n'autoriser que les interactions de personnes réputées. ERC-725 permet de nombreux autres cas d'utilisation, tels que les approbations d'exécution multi-signatures et la vérification par appel de contrat au lieu de la validation de clé.
+
+
                 +--------------+         +------------+
                 |              |         |            |
                 |    ERC 165   |         | KeyStore** |
@@ -55,19 +65,11 @@ Confidentialité - Les régulateurs du monde entier réclament la confidentialit
     +--------------------->                                |
                           +--------------------------------+
 
+* = Abstract contract
+** = Library
+Local Development
 
-
-                          L'identité décentralisée est prometteuse et attire une attention et une concentration importantes sur deux points: Écosystème et nouvelle infrastructure De nombreux avantages ne seront tirés que lorsqu'un vaste écosystème d'entités adoptera des solutions d'identité décentralisées, émettra et vérifiera les informations d'identification numériquement et instituera des normes pour permettre l'interopérabilité et la portabilité.
-
-                          mode d'emploi
-
-                          Le domaine du projet est une implémentation de ERC 725 et ERC 735, norme proposée pour la gestion de l'identité numérique sur la Blockchain. Le projet utilise le framework Truffle et Ganache CLI pour les tests. Ganache CLI, qui fait partie de la suite Truffle d'outils de développement Ethereum, est la version en ligne de commande de Ganache, une blockchain personnelle pour le développement Ethereum. Des outils doux pour les contrats intelligents. La suite Truffle permet aux développeurs de passer de l'idée à l'application le plus confortablement possible.
-
-                          En utilisant ERC 725, un contrat intelligent peut empêcher l'exécution des appels de fonction à moins que l'expéditeur n'ait une réclamation vérifiée d'un émetteur de confiance, par ex. Intégrez un mécanisme dans nos contrats intelligents pour n'autoriser que les interactions de personnes réputées. ERC-725 permet de nombreux autres cas d'utilisation, tels que les approbations d'exécution multi-signatures et la vérification par appel de contrat au lieu de la validation de clé.  
-
-
-
-INSTALLATION 
+Installation
 
 NVM & Yarn
 nvm install v9.11.1   &&
