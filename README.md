@@ -1,14 +1,5 @@
-# Digital-Identity using ERC 725/735
+# Identité Numérique en utilisant les ERC 165,  ERC 725/735
 
-An implementation of [ERC 725](https://github.com/ethereum/EIPs/issues/725) and [ERC 735](https://github.com/ethereum/EIPs/issues/735), proposed standard for managing **Digital Identity** on the **Blockchain**. We uses the [Truffle framework](http://truffleframework.com/) and [Ganache CLI](https://github.com/trufflesuite/ganache-cli) for testing.
-
-Using [ERC 725](https://github.com/ethereum/EIPs/issues/725), a **Smart Contract** can protect function calls from being executed unless the **Sender** has a verified **Claim** from a trusted **Issuer**; e.g. build a mechanism into our Smart Contracts to only allow interactions from reputable people. ERC-725 allows for many more use-cases, such as multi-sig execution approvals and verification by contract call instead of key validation.
-
-> **Default Mnemonic**: `logic cradle area quality lumber pitch radar sense dove fault capital observe` 
-
-## Architecture
-
-the class diagram to make extensive use of Solidity patterns for modular code i.e. libraries, abstract contracts and multiple inheritance:
 
 ```
                 +--------------+         +------------+
@@ -64,8 +55,8 @@ sudo apt-get update && sudo apt-get install yarn
 > Installation
 ```
   # 
-  git clone https://github.com/o2oprotocol/digital-identity &&
-  cd digital-identity                                       &&
+  git clone https://github.com/Artedys/smart-air-id-1.git  &&
+  cd smart-air-id-1                                       &&
   nvm use v9.11.1 && yarn install
 ```
 
@@ -84,7 +75,7 @@ sudo apt-get update && sudo apt-get install yarn
 
 ## Live Demo
 
-- [x] http://digital-identity.o2oprotocol.com
+- [x] coming soon
 - [x] Certifiers provides Issuer-Services: 
   - [x] Has Phone
   - [x] Has Email
