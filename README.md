@@ -114,52 +114,124 @@ Now that the _Buyer:Employer_ has a verified claim on their identity from O2OIss
 
 ## References:
 
-- [Verifiable Claims Use-Cases](https://w3c.github.io/vc-use-cases/#user-needs)
-- [blockcerts-revocation](https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/final-documents/blockcerts-revocation.pdf)
 
 
-## Demo Walkthrough
 
-1. Screen upon loading: first Wallet-ID `0x313A` for a person who desires a blockchain identity (_Consumer:Developer_).
 
-![image](dist/README/Digital-Identity-ERC-725.png)
 
-2. Click "Add an Identity" and deploy an identity contract with name "DevOps".
+Identité Numérique en utilisant les ERC 165, ERC 725/735
 
-![image](dist/README/Digital-Identity-ERC-725-New-Identity.png)
+                +--------------+         +------------+
+                |              |         |            |
+                |    ERC 165   |         | KeyStore** |
+                |              |         |            |
+                +---+--------+-+         +----+-------+
+                    |        |                |
+               +----v-----+ +v---------+ +----v-----+
+               |          | |          | |          |
+ +-------------+ ERC 735* | | ERC 725* | | KeyBase* |
+ |             |          | |          | |          |
+ |             +----------+ ++-+----+--+ +--+-------+------+--------------+
+ |                           | |    |       |              |              |
+ |                           | |    |       |              |              |
+ |   +-----------------------+ |    | +-----+-----+  +-----v-----+ +------v-------+
+ |   |                         |    | |           |  |           | |              |
+ |   |                 +-------|----|-+  Pausable |  | KeyGetter | | Destructible |
+ |   |    +--------------------|----|-+           |  |           | |              |
+ |   |    |            |       |    | +--+--------+  +-+---------+ +--+-----------+
+ |   |    |            |  +----+    |    |             |              |
+ |   |    |            |  |         |    |             |              |
+ |   |    |            |  |         |    |             |              |
+ |   |    |            |  |         |    |             |              |
++v---v----v---+ +------v--v---+  +--v----v--+          |              |
+|             | |             |  |          |          |              |
+|ClaimManager | | KeyManager  |  | MultiSig |          |              |
+|             | |             |  |          |          |              |
++---+---------+ ++------------+  +--+-------+          |              |
+    |            |                  |                  |              |
+    |            |                  |                  |              |
+    |            |        +---------v------------------v---+          |
+    |            |        |                                <----------+
+    |            +-------->            Identity            |
+    |                     |        (ERC 725 + 735)         |
+    +--------------------->                                |
+                          +--------------------------------+
 
-You can see the address of the Contract, as well as the Wallet-ID of the Owner. 
+* = Abstract contract
+** = Library
+Local Development
 
-3. Switch the active wallet to the second, `0x56BE`, for the role of a service that can verify `Has Facebook` or `Has GitHub` (_Issuer:SellerBuyerBroker_).
+NVM & Yarn
+nvm install v9.11.1   &&
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list &&
+sudo apt-get update && sudo apt-get install yarn
+Installation
+  # 
+  git clone https://github.com/Artedys/smart-air-id-1.git  &&
+  cd smart-air-id-1                                       &&
+  nvm use v9.11.1 && yarn install
+Run
+  nvm use v9.11.1 &&
+  yarn clean &&
+  yarn start
+Tests
+  yarn test 
+Live Demo
 
-Again, you should see the address of this Contract, and the Wallet-ID of the Owner of this Contract. 
+ coming soon
+ Certifiers provides Issuer-Services:
+ Has Phone
+ Has Email
+ Facebook
+ Linked-in
+ Google
+ Github
+ Twitter
 
-4. Switch the active wallet to the third, `0xCd5e` for the role to restrict access to only people with verified Facebook/Github accounts. (A marketplace for developers)
 
-5. Click "Add a Claim Checker" and deploy a contract called "Job Posting" with certifier of `Has Facebook`. This is the contract which will be limited to interacting to people with verified Facebook accounts. 
 
-![image](dist/README/Digital-Identity-ERC-725-Claim-Checker.png)
 
-6. Switch to the first Wallet, belonging to "DevOps" then Click on the `Apply Job!` Listing Contract. After clicking on "Check Claim", you should see that the claim is returned as **ClaimInvalid**. At this point, `DevOps` has no proof that has a Facebook account. 
 
-![image](dist/README/Digital-Identity-ERC-725-Claim-Checker-Invalid.png)
+Scripts de démonstration
 
-7. In right column, you should see the `Add Claim` by our "SellerBuyerBroker" Certifier  that has a Facebook account. Click "Approve" to accept this claim to Alice's identity. 
+Imaginez que nous souhaitons déployer un contrat de référencement (par exemple, publier un emploi pour embaucher un pigiste), mais autoriser uniquement les interactions des utilisateurs (par exemple, les développeurs) avec un Facebook et un Github vérifiés. Comment pouvons-nous y parvenir avec l'identité numérique ERC-725 ?
 
-![image](dist/README/Digital-Identity-ERC-725-Identities-Claims-1.png)
+Tout d'abord, définissons les entités qui interagiront:
+Le consommateur: le développeur est une identité qui souhaite postuler à un poste publié.
 
-![image](dist/README/Digital-Identity-ERC-725-Identities-Claims-2.png)
+L'émetteur: SellerBuyerBroker est une identité qui émet des réclamations de type FACEBOOK_VERIFIED & GITHUB_VERIFIED. Remarque: l'acheteur-courtier est un chasseur de têtes.
 
-`DevOps now has on-chain proof of `Facebook`!
+La liste: JobPosting n'autorisera que les réclamations Consumer: Developer avec FACEBOOK_VERIFIED & GITHUB_VERIFIED d'un Issuer-HeadHunterService en qui il a confiance.
 
-![image](dist/README/Digital-Identity-ERC-725-Identities-Claims-3.png)
+Deuxièmement, consommateur: le développeur interagit avec un contrat d'inscription O2OIssuer / SellerBuyerBroker en suivant le processus:
 
-8. Now click the `Job Posting` Listing Contract under `
-Claim Checkers`, and then click on `Apply Job!` then `Check Claim`; You should see that this claim is returned as **ClaimValid***. 
+Acheteur: l'employeur déploie un nouveau contrat d'identité (ou réutilise celui qu'il a déployé précédemment).
 
-![image](dist/README/Digital-Identity-ERC-725-Claim-Checker-Valid.png)
+Acheteur: l'employeur visite O2OIssuer / SellerBuyerBroker / verify et obtient une signature cryptographique prouvant qu'il contrôle un e-mail et un numéro de téléphone particuliers.
 
-`DevOps` is ready to start doing Blockchain Freelancer Marketplace!
+Acheteur: l'employeur ajoute cette réclamation à son contrat d'identité.
 
+Acheteur: L'employeur essaie de postuler un emploi via un contrat d'inscription O2OIssuer / SellerBuyerBroker.
+
+Le contrat d'inscription porte sur l'acheteur: l'identité de l'employeur pour une réclamation émise par O2OIssuer / SellerBuyerBroker.
+
+Le contrat d'inscription récupère la clé publique de la signature de la réclamation et vérifie qu'elle est toujours valide sur le contrat émetteur O2OIssuer / SellerBuyerBroker.
+
+La transaction est autorisée à se poursuivre.
+
+Maintenant que l'acheteur: l'employeur a une réclamation vérifiée sur son identité de O2OIssuer / SellerBuyerBroker, il peut interagir avec tout autre contrat acceptant également les réclamations émises par O2OIssuer / SellerBuyerBroker.
+
+Dépannage
+
+Chrome> Console: localStorage.clear ();
+Chrome> URL: chrome: // settings / siteData
+Références:
+
+Cas d'utilisation des revendications vérifiables
+blockcerts-révocation
+Procédure pas à pas de démonstration
+
+Écran lors du chargement: premier Wallet-ID 0x313A pour une personne qui désire une identité blockchain (Consommateur: Développeur).
 ===
 # smart-air-id-1
